@@ -72,3 +72,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+## IMAGES
+
+![image](./media/tests.png)
+![image](./media/op_deployment.png)
+
+## 📚 References
+
+- [Optimism Sepolia](https://sepolia.optimism.io/)
+- [OP-ERC20](https://docs.optimism.io/developers/l2/technical-reference/op-erc20/)
+- [OP-ERC20 Implementation](https://github.com/ethereum-optimism/optimism/blob/develop/packages/contracts-bedrock/contracts/standards/erc20/OPERC20.sol)
