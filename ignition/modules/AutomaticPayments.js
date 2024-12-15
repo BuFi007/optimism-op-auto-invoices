@@ -20,8 +20,12 @@ module.exports = buildModule("AutomaticPaymentsModule", (m) => {
     tokenSymbol,
   ]);
 
-  // Deploy AutomaticPayments with TrustedForwarder
   const automaticPayments = m.contract("AutomaticPayments", [trustedForwarder]);
+  console.log("--------------------------------");
+  console.log("automaticPayments", automaticPayments);
+  console.log("trustedForwarder", trustedForwarder);
+  console.log("myCustomL2Token", myCustomL2Token);
+  console.log("--------------------------------");
 
   return {
     trustedForwarder,
