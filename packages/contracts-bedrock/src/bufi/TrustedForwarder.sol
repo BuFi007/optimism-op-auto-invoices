@@ -3,10 +3,9 @@ pragma solidity ^0.8.21;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
-
 import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 
-contract TrustedForwarder is Ownable {
+contract TrustedForwarder is Ownable, EIP712 {
     using ECDSA for bytes32;
 
     struct ForwardRequest {
@@ -22,7 +21,9 @@ contract TrustedForwarder is Ownable {
 
     event MetaTransactionExecuted(address from, address to, bytes data);
 
-    constructor() Ownable(msg.sender) EIP712("TrustedForwarder", "1") {}
+    constructor() Ownable() EIP712("TrustedForwarder", "1") {
+        _transferOwnership(msg.sender);
+    }
 
     function getNonce(address from) public view returns (uint256) {
         return _nonces[from];
