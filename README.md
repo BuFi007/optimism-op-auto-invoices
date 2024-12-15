@@ -63,7 +63,7 @@ Our token is specifically designed for the Optimism L2, featuring:
 1. Clone the repository
 2. Copy `.env.example` to `.env` and fill in your private key
 3. Install dependencies: `npm install`
-4. Deploy contracts: `npx hardhat run scripts/deploy.js --network op-sepolia`
+4. Deploy contracts: `npx hardhat deploy --network op-sepolia`
 
 ## 🤝 Contributing
 
