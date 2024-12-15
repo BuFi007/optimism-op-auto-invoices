@@ -19,7 +19,7 @@
     "typechain": "^8.3.2"
   },
   "dependencies": {
-    "@eth-optimism/contracts": "^0.6.0",
+    "@eth-optimism/contracts-bedrock": "^0.17.3",
     "@openzeppelin/contracts": "^5.1.0"
   }
 }

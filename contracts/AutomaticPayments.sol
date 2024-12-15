@@ -6,13 +6,8 @@ import "@openzeppelin/contracts/metatx/ERC2771Context.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-interface IL2TokenBridge {
-    function initiateWithdrawal(address token, uint256 amount) external;
-}
-
 contract AutomaticPayments is ERC2771Context, Ownable {
     using ECDSA for bytes32;
-    IL2TokenBridge public l2Bridge;
 
     struct RecurringPayment {
         address to;
@@ -175,28 +170,5 @@ contract AutomaticPayments is ERC2771Context, Ownable {
         returns (uint256)
     {
         return ERC2771Context._contextSuffixLength();
-    }
-
-    // En AutomaticPayments.sol, agrega:
-
-    function setBridge(address _l2Bridge) external onlyOwner {
-        l2Bridge = IL2TokenBridge(_l2Bridge);
-    }
-
-    function bridgeAndExecutePayment(
-        address from,
-        address to,
-        uint256 chainId
-    ) external {
-        RecurringPayment storage payment = payments[from][to];
-        require(payment.isActive, "Payment not authorized");
-
-        // Ejecuta el pago normal
-        executePayment(from, to);
-
-        // Inicia el bridge si es necesario
-        if (chainId != block.chainid) {
-            l2Bridge.initiateWithdrawal(payment.tokenAddress, payment.amount);
-        }
     }
 }
